@@ -1,0 +1,58 @@
+$background-color-button: #00bc77;
+$color-button-text: #fff;
+$mobile-breakpoint: 720px;
+
+.account { 
+  align-items: center;
+  background-color: white; 
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  text-align: left;
+  width: 82%;
+
+  @media (max-width: $mobile-breakpoint) {
+    flex-direction: column;
+  }
+
+  .account-content-wrapper { 
+    width: 100%;
+
+    .account-title, .account-amount { 
+      font-weight: normal; 
+    }
+
+    .account-title { 
+      font-size: 1rem;
+    }
+
+    .account-amount { 
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+  }
+
+  .cta {
+    @media (max-width: $mobile-breakpoint) {
+      width: 100%;
+    }
+
+    .transaction-button { 
+      background-color: $background-color-button;
+      border-color: $background-color-button;
+      color: $color-button-text;
+      display: block;
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-top: 1rem;
+      padding: 0.5rem;
+      width: 15rem;
+
+      @media (max-width: $mobile-breakpoint) {
+        width: 100%;
+      }
+    }   
+  } 
+}

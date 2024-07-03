@@ -100,13 +100,132 @@ paths:
         '400':
           description: Invalid Fields
         '500':
-          description: Internal Server Error
+          description: Internal Server 
+          
+  /accounts/{accountId}/transactions:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions
+      summary: User  Transactions
+      description: API for fetching user transactions
+      parameters:
+        - in: path
+          name: accountId
+          type: string
+          required: true
+        - in: query
+          name: startDate
+          type: string
+          required: false
+        - in: query
+          name: endDate
+          type: string
+          required: false
+      responses:
+        '200':
+          description: Transactions retrieved successully
+          schema:
+            $ref: '#/definitions/Transactions'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server
+          
+  /accounts/{accountId}/transactions/{transactionId}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions
+      summary: User  Transaction
+      description: API for fetching user transaction
+      parameters:
+        - in: path
+          name: accountId
+          type: string
+          required: true
+        - in: path
+          name: transactionId
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Transaction retrieved successully
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server
+            
+    patch:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions
+      summary: Update Transaction
+      description: API for updating transaction
+      parameters:
+        - in: path
+          name: accountId
+          type: string
+          required: true
+        - in: path
+          name: transactionId
+          type: string
+          required: true
+        - in: body
+          name: transactionBody
+          required: false
+          schema:
+            type: object
+            properties:
+              note:
+                type: 'string'
+              category:
+                type: 'string'
+      responses:
+        '200':
+          description: Transaction updated successully
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server 
+          
 securityDefinitions:
   Bearer:
     type: apiKey
     name: Authorization
     in: header
 definitions:
+  Transaction:
+    properties:
+      date:
+        type: string
+        description: date
+      description:
+        type: string
+        description: transaction description
+      amount:
+        type: string
+        description: amount transaction
+      transactionType:
+        type: string
+        description: transaction type
+      category:
+        type: string
+        description: transaction category
+      note:
+        type: string
+        description: transaction note
+  Transactions:
+    type: array
+    items:
+      $ref: '#/definitions/Transaction'
   User:
     properties:
       email:
